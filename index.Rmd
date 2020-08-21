@@ -1,0 +1,40 @@
+---
+title: "R Markdown and Leaflet"
+author: P.I.N.Kehelbedda
+date: "8/21/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(leaflet)
+```
+
+```{r}
+new_icon <- awesomeIcons(
+  icon = 'ios-close',
+  iconColor = 'black',
+  library = 'ion',
+  markerColor = "red"
+)
+
+content <- paste(sep = "<br/>",
+  "<b>PINK Company</b>",
+  "Peradeniya Road",
+  "Kandy, 20000"
+)
+
+my_map <- leaflet() %>%
+    addTiles() %>%
+    addAwesomeMarkers(lat = 7.2699, lng = 80.5938,
+        icon = new_icon,
+        popup = "Uber Eats Main Shop") %>%
+    addPopups(lat = 7.2699, lng = 80.5938, content,
+        options = popupOptions(closeButton = FALSE)
+    )
+my_map
+```
+
